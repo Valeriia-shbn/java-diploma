@@ -32,7 +32,7 @@ public class CreditAccountTest {
     }
 
     @Test
-    public void shouldThrowIfInitialBalanceBelowZero() {
+    public void shouldThrowIfInitialBalanceNegative() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             CreditAccount account = new CreditAccount(-100, 100, 10);
         });
@@ -40,7 +40,15 @@ public class CreditAccountTest {
     }
 
     @Test
-    public void shouldThrowIfCreditLimitBelowZero() {
+    public void shouldThrowIfRateNegative() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            CreditAccount account = new CreditAccount(100, 100, -10);
+        });
+
+    }
+
+    @Test
+    public void shouldThrowIfCreditLimitNegative() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             CreditAccount account = new CreditAccount(100, -100, 10);
         });
@@ -58,7 +66,7 @@ public class CreditAccountTest {
     }
 
     @Test
-    public void shouldNotPayIfAmountBelowZero() {
+    public void shouldNotPayIfAmountNegative() {
         CreditAccount account = new CreditAccount(1000, 2000, 10);
         account.pay(-500);
         int actual = account.getBalance();
