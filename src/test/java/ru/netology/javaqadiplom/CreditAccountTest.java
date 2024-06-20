@@ -91,6 +91,14 @@ public class CreditAccountTest {
         int expected = account.getBalance() * account.rate / 100;
         Assertions.assertEquals(expected, actual);
     }
+
+    @Test
+    public void shouldNotAssertYearChangeIfBalancePositive() {
+        CreditAccount account = new CreditAccount(100, 2000, 15);
+        int actual = account.yearChange();
+        int expected = 0;
+        Assertions.assertEquals(expected, actual);
+    }
 }
 
 
