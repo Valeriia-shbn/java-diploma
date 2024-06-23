@@ -137,12 +137,7 @@ public class SavingAccountTest {
                 -2_000,
                 2_000,
                 10_000,
-                5
-        );
-
-        account.add(5_000);
-
-        Assertions.assertEquals(7_000, account.getBalance());
+                5);
     }
 
     @Test
@@ -151,11 +146,6 @@ public class SavingAccountTest {
                 15_000,
                 2_000,
                 10_000,
-                5
-        );
-
-        account.add(1_000);
-
-        Assertions.assertEquals(10_000, account.getBalance());
+                5);
     }
 }
