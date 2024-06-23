@@ -46,10 +46,7 @@ public class SavingAccountTest {
 
         Assertions.assertEquals(2_000, account.getBalance());
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> 27ebf7bb5eefc084c5370797a907be53a8ab6e41
     @Test
     public void shouldPayMoreThanMinBalance() {
         SavingAccount account = new SavingAccount(
@@ -119,7 +116,6 @@ public class SavingAccountTest {
 
         Assertions.assertEquals(0, account.yearChange());
     }
-<<<<<<< HEAD
 
     @Test
     public void shouldMinBalanceNegative() {
@@ -162,6 +158,4 @@ public class SavingAccountTest {
 
         Assertions.assertEquals(10_000, account.getBalance());
     }
-=======
->>>>>>> 27ebf7bb5eefc084c5370797a907be53a8ab6e41
 }
