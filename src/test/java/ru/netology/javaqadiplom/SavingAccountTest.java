@@ -46,6 +46,7 @@ public class SavingAccountTest {
 
         Assertions.assertEquals(2_000, account.getBalance());
     }
+
     @Test
     public void shouldPayMoreThanMinBalance() {
         SavingAccount account = new SavingAccount(
@@ -114,5 +115,47 @@ public class SavingAccountTest {
         account.yearChange();
 
         Assertions.assertEquals(0, account.yearChange());
+    }
+
+    @Test
+    public void shouldMinBalanceNegative() {
+        SavingAccount account = new SavingAccount(
+                2_000,
+                -2_000,
+                10_000,
+                5
+        );
+
+        account.pay(-3_000);
+
+        Assertions.assertEquals(2_000, account.getBalance());
+    }
+
+    @Test
+    public void shouldInitialBalanceNegative() {
+        SavingAccount account = new SavingAccount(
+                -2_000,
+                2_000,
+                10_000,
+                5
+        );
+
+        account.add(5_000);
+
+        Assertions.assertEquals(7_000, account.getBalance());
+    }
+
+    @Test
+    public void shouldInitialBalanceMoreThanMaxBalance() {
+        SavingAccount account = new SavingAccount(
+                15_000,
+                2_000,
+                10_000,
+                5
+        );
+
+        account.add(1_000);
+
+        Assertions.assertEquals(10_000, account.getBalance());
     }
 }
