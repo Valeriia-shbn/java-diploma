@@ -34,16 +34,16 @@ public class CreditAccount extends Account {
      * на сумму покупки. Если же операция может привести к некорректному
      * состоянию счёта (например, баланс может уйти меньше чем лимит), то операция должна
      * завершиться вернув false и ничего не поменяв на счёте.
-     *
      * @param amount - сумма покупки
      * @return true если операция прошла успешно, false иначе.
      */
+
     @Override
     public boolean pay(int amount) {
         if (amount <= 0) {
             return false;
         }
-        if (balance - amount > creditLimit) {
+        if (balance - amount >- creditLimit) {
             balance = balance - amount;
             return true;
         } else {
@@ -84,11 +84,13 @@ public class CreditAccount extends Account {
                  *
                  * @return
                  */
-
-                @Override
-                public int yearChange () {
-                    return balance / 100 * rate;
+                public int yearChange() {
+                    if (balance >= 0) {
+                        return 0;
+                    } else {
+                        return balance * rate / 100 ;
                     }
+                }
 
                 public int getCreditLimit () {
                     return creditLimit;
