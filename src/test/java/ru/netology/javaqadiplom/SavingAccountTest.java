@@ -148,4 +148,32 @@ public class SavingAccountTest {
                 10_000,
                 5);
     }
+
+    @Test
+    public void shouldThrowIfRateNegative() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            SavingAccount account = new SavingAccount(5_000, 1_000, 10_000, -10);
+        });
+    }
+
+    @Test
+    public void shouldThrowIfMinBalanceNegative() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            SavingAccount account = new SavingAccount(5_000, -1_000, 10_000, 10);
+        });
+    }
+
+    @Test
+    public void shouldThrowIfinitialBalanceNegative() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            SavingAccount account = new SavingAccount(-5_000, 1_000, 10_000, 10);
+        });
+    }
+
+    @Test
+    public void shouldThrowIfMinBalanceMoreThanMaxBalance() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            SavingAccount account = new SavingAccount(5_000, 10_000, 1_000, 10);
+        });
+    }
 }
