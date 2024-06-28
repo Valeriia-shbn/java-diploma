@@ -118,10 +118,10 @@ public class SavingAccountTest {
     }
 
     @Test
-    public void shouldMinBalanceNegative() {
+    public void shouldNotPayNegative() {
         SavingAccount account = new SavingAccount(
                 2_000,
-                -2_000,
+                2_000,
                 10_000,
                 5
         );
@@ -133,20 +133,26 @@ public class SavingAccountTest {
 
     @Test
     public void shouldInitialBalanceNegative() {
-        SavingAccount account = new SavingAccount(
-                -2_000,
-                2_000,
-                10_000,
-                5);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            SavingAccount account = new SavingAccount(
+                    -2_000,
+                    2_000,
+                    10_000,
+                    5);
+
+        });
     }
+
 
     @Test
     public void shouldInitialBalanceMoreThanMaxBalance() {
-        SavingAccount account = new SavingAccount(
-                15_000,
-                2_000,
-                10_000,
-                5);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            SavingAccount account = new SavingAccount(
+                    15_000,
+                    2_000,
+                    10_000,
+                    5);
+        });
     }
 
     @Test
