@@ -23,11 +23,11 @@ public class CreditAccount extends Account {
                     "Кредитная ставка не может быть отрицательной, а у вас: " + rate
             );
         }
-            if (initialBalance <= 0) {
-                throw new IllegalArgumentException(
-                        "Начальный баланс не может быть отрицательным, а у вас: " + initialBalance
-                );
-            }
+        if (initialBalance <= 0) {
+            throw new IllegalArgumentException(
+                    "Начальный баланс не может быть отрицательным, а у вас: " + initialBalance
+            );
+        }
         if (creditLimit <= 0) {
             throw new IllegalArgumentException(
                     "Кредитный лимит не может быть отрицательним, а у вас: " + creditLimit
@@ -45,6 +45,7 @@ public class CreditAccount extends Account {
      * на сумму покупки. Если же операция может привести к некорректному
      * состоянию счёта (например, баланс может уйти меньше чем лимит), то операция должна
      * завершиться вернув false и ничего не поменяв на счёте.
+     *
      * @param amount - сумма покупки
      * @return true если операция прошла успешно, false иначе.
      */
@@ -54,7 +55,7 @@ public class CreditAccount extends Account {
         if (amount <= 0) {
             return false;
         }
-        if (balance - amount >- creditLimit) {
+        if (balance - amount > -creditLimit) {
             balance = balance - amount;
             return true;
         } else {
@@ -74,36 +75,36 @@ public class CreditAccount extends Account {
      * @return
      */
 
-        public boolean add(int amount) {
-            if (amount <= 0) {
-                return false;
-            }
-            if (balance + amount < creditLimit) {
-                balance = balance + amount;
-                return true;
-            } else {
-                return false;
-            }
+    public boolean add(int amount) {
+        if (amount <= 0) {
+            return false;
         }
+        if (balance + amount < creditLimit) {
+            balance = balance + amount;
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-                /**
-                 * Операция расчёта процентов на отрицательный баланс счёта при условии, что
-                 * счёт не будет меняться год. Сумма процентов приводится к целому
-                 * числу через отбрасывание дробной части (так и работает целочисленное деление).
-                 * Пример: если на счёте -200 рублей, то при ставке 15% ответ должен быть -30.
-                 * Пример 2: если на счёте 200 рублей, то при любой ставке ответ должен быть 0.
-                 *
-                 * @return
-                 */
-                public int yearChange() {
-                    if (balance >= 0) {
-                        return 0;
-                    } else {
-                        return balance * rate / 100 ;
-                    }
-                }
+    /**
+     * Операция расчёта процентов на отрицательный баланс счёта при условии, что
+     * счёт не будет меняться год. Сумма процентов приводится к целому
+     * числу через отбрасывание дробной части (так и работает целочисленное деление).
+     * Пример: если на счёте -200 рублей, то при ставке 15% ответ должен быть -30.
+     * Пример 2: если на счёте 200 рублей, то при любой ставке ответ должен быть 0.
+     *
+     * @return
+     */
+    public int yearChange() {
+        if (balance >= 0) {
+            return 0;
+        } else {
+            return balance * rate / 100;
+        }
+    }
 
-                public int getCreditLimit () {
-                    return creditLimit;
-                }
-            }
+    public int getCreditLimit() {
+        return creditLimit;
+    }
+}
